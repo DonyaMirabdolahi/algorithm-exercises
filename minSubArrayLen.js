@@ -1,21 +1,27 @@
-/**
-Sliding Window - minSubArrayLen
+function minSubArrayLen(arr, target) {
+    let start = 0;
+    let windowSum = 0;
+    let minLength = Infinity; 
+  
+    for (let end = 0; end < arr.length; end++) {
+      windowSum += arr[end];
+  
+      while (windowSum >= target) {
+        minLength = Math.min(minLength, end - start + 1);
+        windowSum -= arr[start];
+        start++;
+      }
+    }
+  
+    return minLength === Infinity ? 0 : minLength;
+  }
+  
 
-Write a function called minSubArrayLen which accepts two parameters - an array of positive integers and a positive integer.
-This function should return the minimal length of a contiguous subarray of which the sum is greater than or equal to the integer passed to the function. If there isn't one, return 0 instead.
-
-Examples:
-minSubArrayLen([2,3,1,2,4,31, 7) // 2 -> because [4,3] is the smallest subarray|
-minSubArrayLen([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray minSubArrayLen([3,1,7,11,2,9,8,21,62,33,191, 52) // 1 -> because [62] is greater than 52
-minSubArrayLen((1,4,16,22,5,7,8,9,101,39) // 3
-minSubArrayLen((1,4,16,22,5,7,8,9,101,55) // 5
-minSubArrayLen([4, 3, 3, 8, 1, 2, 31, 11) // 2 minSubArrayLen([1,4,16,22,5,7,8, 9,101,95) // 0
-
-Time Complexity - O(n)
-Space Complexity - O(1)
-**/
-
-
-function minSubArrayLen(){
-  // add whatever parameters you deem necessary - good luck!
-}
+  console.log(minSubArrayLen([2, 3, 1, 2, 4, 3], 7)); 
+  console.log(minSubArrayLen([2, 1, 6, 5, 4], 9)); 
+  console.log(minSubArrayLen([3, 1, 7, 11, 2, 9, 8, 21, 62, 33, 191, 52], 52));
+  console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 101, 39], 51));
+  console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 101, 55], 95)); 
+  console.log(minSubArrayLen([4, 3, 3, 8, 1, 2, 31, 11], 7));
+  console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 101, 95], 100)); 
+  
