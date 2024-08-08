@@ -1,7 +1,3 @@
-/**
-Please implement the find and contains to the following Binary Search Tree
-**/
-
 class Node {
     constructor(value){
         this.value = value;
@@ -9,7 +5,6 @@ class Node {
         this.right = null;
     }
 }
-
 class BinarySearchTree {
     constructor(){
         this.root = null;
@@ -39,10 +34,46 @@ class BinarySearchTree {
         }
     }
     find(value){
-        // find the node based on the given value
-        // return value should be the found node or undefined
+        if (this.root === null) return undefined;
+        var current = this.root,
+            found = false;
+        while(current && !found){
+            if(value < current.value){
+                current = current.left;
+            } else if(value > current.value){
+                current = current.right;
+            } else {
+                found = true;
+            }
+        }
+        if(!found) return undefined;
+        return current;
     }
     contains(value){
-        // return true or false if the contains the given value or not
+        if (this.root === null) return false;
+        var current = this.root,
+            found = false;
+        while(current && !found){
+            if(value < current.value){
+                current = current.left;
+            } else if(value > current.value){
+                current = current.right;
+            } else {
+                found = true;
+            }
+        }
+        return found;
     }
 }
+var bst = new BinarySearchTree();
+bst.insert(10);
+bst.insert(5);
+bst.insert(13);
+bst.insert(2);
+bst.insert(7);
+bst.insert(11);
+bst.insert(16);
+console.log(bst.find(7)); 
+console.log(bst.find(20));
+console.log(bst.contains(7));
+console.log(bst.contains(20));
