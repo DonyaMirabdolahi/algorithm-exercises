@@ -1,23 +1,20 @@
-// implement the pop functionality
-
-
-
 class Node {
-    constructor(value){
+    constructor(value) {
         this.value = value;
         this.next = null;
     }
 }
 
 class Stack {
-    constructor(){
+    constructor() {
         this.first = null;
         this.last = null;
         this.size = 0;
     }
-    push(val){
+    
+    push(val) {
         var newNode = new Node(val);
-        if(!this.first){
+        if (!this.first) {
             this.first = newNode;
             this.last = newNode;
         } else {
@@ -27,7 +24,27 @@ class Stack {
         }
         return ++this.size;
     }
-    pop(){
-        // code here
+    
+    pop() {
+        if (this.size === 0) return null;
+        
+        var temp = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--;
+        
+        return temp.value;
     }
 }
+
+
+var stack = new Stack();
+stack.push(10);
+stack.push(20);
+stack.push(30);
+console.log(stack.pop()); 
+console.log(stack.pop()); 
+console.log(stack.pop()); 
+console.log(stack.pop()); 
