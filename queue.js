@@ -1,9 +1,3 @@
-/**
-  Please add dequeue function to the following Queue 
-**/
-
-
-
 class Node {
     constructor(value){
         this.value = value;
@@ -17,6 +11,7 @@ class Queue {
         this.last = null;
         this.size = 0;
     }
+    
     enqueue(val){
         var newNode = new Node(val);
         if(!this.first){
@@ -30,6 +25,24 @@ class Queue {
     }
 
     dequeue(){
-        // return null or a value
+        if(!this.first) return null; 
+        var temp = this.first; 
+        if(this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.size--; 
+
+        return temp.value; 
     }
 }
+
+
+const queue = new Queue();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+console.log(queue.dequeue()); 
+console.log(queue.dequeue());
+console.log(queue.dequeue()); 
+console.log(queue.dequeue()); 
